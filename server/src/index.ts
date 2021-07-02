@@ -12,9 +12,10 @@ import { PostResolver } from "./resolvers/post";
 const main = async () => {
   // create DB connection
   const orm = await MikroORM.init(MikroConfig);
+  // perform DB migration
   await orm.getMigrator().up();
 
-  // create express app
+  // create express app and configure apollo server
   const app = express();
 
   const apolloServer = new ApolloServer({
